@@ -1,0 +1,47 @@
+{
+  "sandbox_root": "/workspace",
+  "allowed_domains": [
+    "api.github.com",
+    "api.openai.com",
+    "api.anthropic.com"
+  ],
+  "block_untrusted_context_high_risk": true,
+  "rules": [
+    {
+      "rule_id": "POL-APP-001",
+      "tool_pattern": "transfer_funds",
+      "decision": "require_approval",
+      "description": "Financial actions need explicit human approval.",
+      "risk_level": "high",
+      "max_string_length": 4000
+    },
+    {
+      "rule_id": "POL-APP-002",
+      "tool_pattern": "send_email",
+      "decision": "require_approval",
+      "description": "External email dispatch must be gated for content review.",
+      "risk_level": "medium"
+    },
+    {
+      "rule_id": "POL-APP-003",
+      "tool_pattern": "admin_*",
+      "decision": "deny",
+      "description": "Administrative capabilities are off-limits to autonomous agents.",
+      "risk_level": "critical"
+    },
+    {
+      "rule_id": "POL-APP-004",
+      "tool_pattern": "http_request",
+      "decision": "deny",
+      "description": "Network access is restricted to trusted domains.",
+      "risk_level": "high",
+      "blocked_arg_patterns": {
+        "url": [
+          "169\\.254\\.169\\.254",
+          "10\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}",
+          "\\.internal"
+        ]
+      }
+    }
+  ]
+}
