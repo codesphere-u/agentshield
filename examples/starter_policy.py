@@ -4,9 +4,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from agentshield import AgentShieldPolicy, PolicyDecision, PolicyRule, RiskLevel
+from agentshield import AgentShieldPolicy, PolicyDecision, RiskLevel
 from agentshield.policy.config import build_policy_from_config
-
 
 EXAMPLE_CONFIG = {
     "sandbox_root": "/workspace",
