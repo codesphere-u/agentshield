@@ -106,7 +106,9 @@ class ShieldedAgentRuntime:
         redact_output: bool = True,
     ) -> R | str:
         """Evaluate tool permissions, execute the callable if permitted, and scan output for secrets."""
-        resolved_name = tool_name or getattr(func, "__name__", "unknown_tool")
+        resolved_name: str = (
+            tool_name if tool_name is not None else str(getattr(func, "__name__", "unknown_tool"))
+        )
         args = arguments or {}
         call = ToolCall(
             tool_name=resolved_name,

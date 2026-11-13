@@ -14,9 +14,10 @@ dist/
 *.egg-info/
 .eggs/
 
-# Test & coverage caches
+# Test, typecheck & coverage caches
 .pytest_cache/
 .ruff_cache/
+.mypy_cache/
 .coverage
 htmlcov/
 

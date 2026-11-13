@@ -8,7 +8,7 @@ on:
 
 jobs:
   test-and-benchmark:
-    name: Lint, Test & OWASP Benchmark (Python ${{ matrix.python-version }})
+    name: Lint, Typecheck, Test & OWASP Benchmark (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -33,8 +33,11 @@ jobs:
       - name: Run Ruff linter
         run: uv run --python ${{ matrix.python-version }} ruff check .
 
-      - name: Run Pytest suite (42+ tests)
-        run: uv run --python ${{ matrix.python-version }} pytest -v
+      - name: Run Mypy type checker
+        run: uv run --python ${{ matrix.python-version }} mypy agentshield
+
+      - name: Run Pytest suite with coverage
+        run: uv run --python ${{ matrix.python-version }} pytest -v --cov=agentshield --cov-report=term-missing --cov-fail-under=85
 
       - name: Execute 25-Scenario OWASP 2026 Benchmark Suite
         run: uv run --python ${{ matrix.python-version }} agentshield evaluate --output benchmark_report.md
