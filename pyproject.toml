@@ -37,7 +37,7 @@ classifiers = [
 ]
 dependencies = [
     "pydantic>=2.5.0",
-    "fastapi>=0.110.0",
+    "fastapi>=0.162.2",
     "uvicorn>=0.27.0",
 ]
 
