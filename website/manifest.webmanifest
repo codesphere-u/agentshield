@@ -1,0 +1,15 @@
+{
+  "name": "AgentShield",
+  "short_name": "AgentShield",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fffdf2",
+  "theme_color": "#818cf8",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

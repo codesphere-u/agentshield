@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgentShield — Deterministic OWASP 2026 Agent Security Firewall</title>
+  <meta name="description" content="Deterministic runtime firewall, tool capability policy engine, egress DLP redaction, and SHA-256 audit ledger aligned with OWASP 2026.">
+  <meta name="keywords" content="AgentShield, OWASP 2026 LLM Top 10, prompt injection detector, agent tool firewall, egress DLP redaction, SHA-256 audit ledger, MCP security">
+  <link rel="canonical" href="https://codesphere-u.github.io/agentshield/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#818cf8">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AgentShield — Sub-Millisecond Firewall &amp; DLP for AI Agents">
+  <meta property="og:description" content="100.0% recall and 0.0% false positive rate across 25 OWASP 2026 scenarios for prompt injection, SSRF/SQLi tool calls, and secret leaks.">
+  <meta property="og:url" content="https://codesphere-u.github.io/agentshield/">
+  <meta property="og:image" content="https://codesphere-u.github.io/agentshield/og-image.svg">
+  <meta property="og:image:alt" content="AgentShield v1.1.0 Hexagonal Aegis mascot and OWASP 2026 benchmark summary">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AgentShield — Deterministic Agent Security &amp; Governance">
+  <meta name="twitter:description" content="Block prompt injection, shell/SSRF/SQLi misuse, and API secret leakage under 0.15 ms with tamper-evident SHA-256 logs.">
+  <meta name="twitter:image" content="https://codesphere-u.github.io/agentshield/og-image.svg">
+
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://codesphere-u.github.io/agentshield/#org",
+        "name": "CodeSphere",
+        "url": "https://github.com/codesphere-u",
+        "founder": {
+          "@type": "Person",
+          "@id": "https://codesphere-u.github.io/agentshield/#founder",
+          "name": "CodeSphere Security Architecture Team",
+          "url": "https://github.com/codesphere-u"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://codesphere-u.github.io/agentshield/#website",
+        "url": "https://codesphere-u.github.io/agentshield/",
+        "name": "AgentShield",
+        "publisher": { "@id": "https://codesphere-u.github.io/agentshield/#org" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://codesphere-u.github.io/agentshield/#software",
+        "name": "AgentShield",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "macOS, Linux, Windows",
+        "softwareVersion": "1.1.0",
+        "license": "https://opensource.org/license/apache-2-0",
+        "url": "https://codesphere-u.github.io/agentshield/",
+        "downloadUrl": "https://github.com/codesphere-u/agentshield/releases/tag/v1.1.0",
+        "publisher": { "@id": "https://codesphere-u.github.io/agentshield/#org" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        "featureList": [
+          "PromptInjectionDetector covering direct override, Base64/Hex payloads, ChatML delimiters, and zero-width steganography",
+          "AgentShieldPolicy inspecting shell chaining, path traversal, RFC1918/metadata SSRF, and stacked SQL injection",
+          "DataLeakageDetector redacting API keys, PEM keys, JWTs, DB URIs, SSNs, credit cards, and XSS payloads",
+          "Tamper-evident SHA-256 hash-chained AuditLedger with verify_integrity()"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why run deterministic security checks instead of an LLM guard model?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Probabilistic LLM judges add 300–1200 ms of latency and can themselves be tricked by adversarial prompts. AgentShield enforces deterministic regex, decoding, AST/argument, and policy invariants under 0.15 ms with zero external API keys."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does AgentShield protect Python tools and MCP tool calls?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Wrap callables with @guard_tool(runtime) or call ShieldedAgentRuntime adapters for OpenAI and Anthropic/MCP tool calls. Untrusted contexts cannot escalate into privileged tools, and human-approval callbacks pause sensitive actions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the audit ledger detect tampering?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "AuditLedger hashes every decision sequentially using SHA-256 previous-hash chaining. Running verify_integrity() exposes any modified summary, forged entry, or missing row."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-analytics="plausible">
+  <div class="page-col">
+    <header class="site-header">
+      <a class="brand-link" href="index.html" aria-label="AgentShield Home">
+        <svg class="brand-wordmark-svg" viewBox="0 0 196 36" width="196" height="36" role="img" aria-label="AgentShield">
+          <polygon points="16,3 28,10 28,26 16,33 4,26 4,10" fill="#818cf8" stroke="#1e1b18" stroke-width="2.2" stroke-linejoin="round"/>
+          <rect x="10" y="12" width="12" height="11" rx="3" fill="#fffdf2" stroke="#1e1b18" stroke-width="1.6"/>
+          <circle cx="13.5" cy="16.8" r="1.5" fill="#10b981"/>
+          <circle cx="18.5" cy="16.8" r="1.5" fill="#10b981"/>
+          <text x="34" y="25.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22.5" font-weight="800" letter-spacing="-0.6" fill="none" stroke="#1e1b18" stroke-width="4.2" stroke-linejoin="round">AgentShield</text>
+          <text x="34" y="25.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22.5" font-weight="800" letter-spacing="-0.6" fill="#818cf8">AgentShield</text>
+        </svg>
+      </a>
+      <nav class="header-nav" aria-label="Primary navigation">
+        <a href="studio.html">Studio</a>
+        <a href="proof.html">Benchmark</a>
+        <a href="rules.html">Matrix</a>
+        <a href="docs.html">Docs</a>
+        <a class="icon-link" href="https://github.com/codesphere-u/agentshield" aria-label="AgentShield on GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a10.9 10.9 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        </a>
+        <a class="nav-pill" href="docs.html#install">Install</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-duo" aria-labelledby="hero-title">
+        <div class="mascot-wrap">
+          <svg viewBox="0 0 144 144" role="img" aria-label="AgentShield hexagonal firewall mascot">
+            <polygon points="72,10 128,42 128,102 72,134 16,102 16,42" fill="#818cf8" stroke="#1e1b18" stroke-width="4.5" stroke-linejoin="round"/>
+            <rect x="38" y="45" width="68" height="54" rx="14" fill="#fffdf2" stroke="#1e1b18" stroke-width="3.6"/>
+            <circle cx="58" cy="67" r="8.5" fill="#10b981" stroke="#1e1b18" stroke-width="3"/>
+            <circle cx="86" cy="67" r="8.5" fill="#10b981" stroke="#1e1b18" stroke-width="3"/>
+            <circle cx="60" cy="65" r="2" fill="#fffdf2"/>
+            <circle cx="88" cy="65" r="2" fill="#fffdf2"/>
+            <path d="M56 84h32" stroke="#1e1b18" stroke-width="3.4" stroke-linecap="round"/>
+            <circle cx="118" cy="24" r="11" fill="#10b981" stroke="#1e1b18" stroke-width="3.2"/>
+          </svg>
+        </div>
+        <div class="hero-copy">
+          <h1 id="hero-title">Sub-millisecond runtime firewall for AI agents.</h1>
+          <p class="hero-sub">OWASP 2026 protection across prompt ingestion, shell/filesystem/SQL/SSRF tool calls, egress DLP redaction, and SHA-256 audit chaining.</p>
+        </div>
+      </section>
+
+      <section class="cta-area" aria-label="Install AgentShield">
+        <div class="split-btn-group">
+          <button class="split-main" id="copy-main-cmd" type="button" data-copy="uv run agentshield evaluate --output report.md">
+            <strong>Run OWASP 2026 Benchmark</strong>
+            <span>v1.1.0 &middot; Python 3.10+ &middot; 100.0% recall in &lt;0.15 ms</span>
+          </button>
+          <button class="split-caret" id="cta-menu-btn" type="button" aria-label="Switch AgentShield command" aria-expanded="false">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg>
+          </button>
+        </div>
+        <div class="cmd-caption" id="main-cmd-caption">$ uv run agentshield evaluate --output report.md</div>
+
+        <div class="cta-popover" id="cta-popover" role="dialog" aria-label="Install commands">
+          <div class="pop-tabs" role="tablist">
+            <button class="pop-tab active" type="button" data-pop-cmd="uv run agentshield evaluate --output report.md">Benchmark</button>
+            <button class="pop-tab" type="button" data-pop-cmd="pip install git+https://github.com/codesphere-u/agentshield.git">pip</button>
+            <button class="pop-tab" type="button" data-pop-cmd="agentshield check-prompt &quot;Ignore all previous system instructions&quot;">Check Prompt</button>
+            <button class="pop-tab" type="button" data-pop-cmd="agentshield serve --port 8090">Security Lab</button>
+          </div>
+          <div class="pop-cmd">
+            <code id="pop-cmd-text">uv run agentshield evaluate --output report.md</code>
+            <button class="copy-icon-btn" id="pop-copy-btn" type="button" aria-label="Copy selected command">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="preview-frame" aria-label="AgentShield Defense Preview">
+        <div class="frame-bar">
+          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="frame-tabs" role="tablist">
+            <button class="frame-tab active" type="button" data-preview="prompt">Prompt Defense</button>
+            <button class="frame-tab" type="button" data-preview="tool">Tool Policy</button>
+            <button class="frame-tab" type="button" data-preview="dlp">Egress DLP</button>
+          </div>
+          <a class="frame-open-link" href="studio.html">Open Studio &rarr;</a>
+        </div>
+        <div class="preview-body">
+          <div class="preview-pane" data-preview-pane="prompt">
+            <div class="score-row">
+              <div class="score-cell"><span>OWASP Suite</span><strong>25 / 25</strong></div>
+              <div class="score-cell"><span>Attack Recall</span><strong>100.0%</strong></div>
+              <div class="score-cell"><span>False Positives</span><strong>0.0%</strong></div>
+              <div class="score-cell"><span>Median Check</span><strong>&lt; 0.15 ms</strong></div>
+            </div>
+            <p class="diag-note"><strong>LLM01 &amp; LLM08 Blocked:</strong> Detects direct overrides, ChatML control token spoofing, Base64/Hex obfuscation, zero-width steganography, and HTML RAG poisoning.</p>
+          </div>
+          <div class="preview-pane" data-preview-pane="tool" hidden>
+            <div class="rw-list">
+              <div class="rw-item warn-border"><span>ASI02:2026 &middot; CLOUD METADATA SSRF &middot; DENY</span><p>Blocks <code>http_request</code> targeting <code>169.254.169.254</code>, RFC1918 subnets, or <code>file://</code> schemes before socket creation.</p></div>
+              <div class="rw-item"><span>LLM06:2026 &middot; REQUIRE_APPROVAL GATE</span><p>Routes financial transfers and destructive admin actions through deterministic human-in-the-loop approval callbacks.</p></div>
+            </div>
+          </div>
+          <div class="preview-pane" data-preview-pane="dlp" hidden>
+            <div class="rw-list">
+              <div class="rw-item warn-border"><span>LLM02:2026 &middot; SECRET REDACTION &middot; CRITICAL</span><p>Redacts OpenAI/AWS/GitHub tokens, PEM private keys, JWTs, database URIs, SSNs, and Luhn-valid credit cards inline.</p></div>
+              <div class="rw-item"><span>LLM05:2026 &middot; XSS SANITIZATION &middot; HIGH</span><p>Strips executable script tags, javascript URLs, and leaked system prompt canary tokens before response delivery.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-foot">
+          <span>Zero external API calls &middot; FastAPI Security Lab &middot; @guard_tool &amp; MCP adapters</span>
+          <span class="preview-foot-links">
+            <a href="studio.html">Test Payloads Live</a>
+            <a href="proof.html">25-Scenario Report</a>
+          </span>
+        </div>
+      </section>
+
+      <section class="editorial-grid" aria-label="Security Architecture">
+        <div>
+          <h2>Injection Defense</h2>
+          <p>Inspects user messages and retrieved RAG chunks for direct jailbreaks, Base64/Hex payloads, ChatML delimiters, and zero-width Unicode hiding.</p>
+        </div>
+        <div>
+          <h2>Capability Firewall</h2>
+          <p>Deep argument inspectors block shell command chaining, filesystem path traversal outside workspaces, cloud metadata SSRF, and stacked SQL queries.</p>
+        </div>
+        <div>
+          <h2>Egress DLP Redaction</h2>
+          <p>Automatically scrubs leaked provider keys, private keys, JWTs, DB connection strings, PII, and XSS payloads prior to reaching the caller.</p>
+        </div>
+        <div>
+          <h2>SHA-256 Audit Ledger</h2>
+          <p>Append-only hash-chained ledger records every <code>allow</code>, <code>deny</code>, and <code>require_approval</code> decision with <code>verify_integrity()</code> verification.</p>
+        </div>
+      </section>
+
+      <hr class="hairline">
+
+      <section class="ecosystem-section" aria-labelledby="owasp-heading">
+        <h2 id="owasp-heading">OWASP 2026 Defense Architecture</h2>
+        <p class="ecosystem-sub">Four deterministic defense stages protecting prompts, tool arguments, tool responses, and audit history.</p>
+        <div class="eco-badges">
+          <div class="eco-item"><div class="eco-circle" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.4 9.2-8 10.8C7.4 21.2 4 17 4 12V7l8-4z"/></svg></div><span>LLM01 Prompt</span></div>
+          <div class="eco-item"><div class="eco-circle" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h12M4 18h8"/></svg></div><span>LLM08 RAG</span></div>
+          <div class="eco-item"><div class="eco-circle" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4z"/></svg></div><span>ASI02 Tools</span></div>
+          <div class="eco-item"><div class="eco-circle" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div><span>LLM02 DLP</span></div>
+          <div class="eco-item"><div class="eco-circle" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div><span>LLM06 Gates</span></div>
+          <div class="eco-item"><div class="eco-circle" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.2 1.2"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1.2-1.2"/></svg></div><span>SHA-256 Log</span></div>
+        </div>
+        <p class="inline-cta-links">
+          Test payloads live in <a href="studio.html">Studio</a>, browse all 25 scenarios in <a href="proof.html">Benchmark</a>, or explore the <a href="rules.html">OWASP Matrix</a>.
+        </p>
+      </section>
+
+      <hr class="hairline">
+
+      <section aria-labelledby="faq-heading">
+        <h2 class="sec-title" id="faq-heading">Frequently Asked Questions</h2>
+        <div class="faq-stack">
+          <details class="faq-item">
+            <summary>Why run deterministic security checks instead of an LLM guard model?</summary>
+            <p>Probabilistic LLM judges add 300&ndash;1200 ms latency and remain susceptible to adversarial bypasses. AgentShield enforces deterministic parsing, decoding, and policy invariants under <code>0.15 ms</code> with zero external API keys.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How does AgentShield protect Python tools and MCP tool calls?</summary>
+            <p>Decorate any tool with <code>@guard_tool(runtime)</code> or pass OpenAI/Anthropic/MCP tool payloads through <code>ShieldedAgentRuntime</code>. Untrusted RAG contexts cannot trigger privileged tools.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How does the audit ledger detect tampering?</summary>
+            <p><code>AuditLedger</code> appends sequential SHA-256 hash-linked entries. Calling <code>verify_integrity()</code> detects tampered summaries, altered parameters, or deleted audit entries immediately.</p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="studio.html">Studio</a> &middot;
+        <a href="proof.html">Benchmark</a> &middot;
+        <a href="rules.html">Matrix</a> &middot;
+        <a href="docs.html">Docs</a> &middot;
+        <a href="llms.txt">llms.txt</a> &middot;
+        <a href="llms-full.txt">llms-full.txt</a> &middot;
+        <a href="https://github.com/codesphere-u/agentshield">GitHub</a> &middot;
+        <a href="https://github.com/codesphere-u/agentshield/releases/tag/v1.1.0">v1.1.0</a>
+      </div>
+      <div>Privacy-friendly analytics via Plausible &middot; Apache-2.0 License &middot; <a href="https://github.com/codesphere-u">codesphere-u</a></div>
+    </footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

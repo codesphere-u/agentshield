@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "agentshield"
-version = "1.0.0"
+version = "1.1.0"
 description = "Deterministic AI Agent Security & Governance Framework aligned with the OWASP 2026 Top 10 for LLM & Agentic Applications"
 readme = "README.md"
 license = { text = "Apache-2.0" }

@@ -1,0 +1,18 @@
+# AgentShield v1.1.0 — Full Repository Reference for Agents
+
+AgentShield enforces sub-millisecond deterministic security invariants across prompt ingestion, agent tool invocation, output egress DLP redaction, and SHA-256 hash-chained audit logging.
+
+## Key Links
+- Website: https://codesphere-u.github.io/agentshield/
+- Studio: https://codesphere-u.github.io/agentshield/studio.html
+- Benchmark: https://codesphere-u.github.io/agentshield/proof.html
+- Defense Matrix: https://codesphere-u.github.io/agentshield/rules.html
+- Docs: https://codesphere-u.github.io/agentshield/docs.html
+- Architecture: `docs/architecture.md`
+- ADR 001: `docs/decisions/001-deterministic-policy-firewall.md`
+
+## Verified OWASP 2026 Benchmark (25 Scenarios)
+- Recall: `100.0%` (`21 / 21` adversarial attacks)
+- False Positive Rate: `0.0%` (`0 / 4` benign controls)
+- Exact Policy Verdict Accuracy: `100.0%` (`25 / 25`)
+- Median Check Latency: `< 0.15 ms`

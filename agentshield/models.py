@@ -194,7 +194,7 @@ class SecurityReport(BaseModel):
 
     report_id: str = Field(default_factory=lambda: f"rep_{uuid4().hex[:12]}")
     generated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-    framework_version: str = Field(default="1.0.0")
+    framework_version: str = Field(default="1.1.0")
     total_scenarios: int
     total_attacks: int
     total_benign: int

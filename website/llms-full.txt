@@ -1,0 +1,25 @@
+# AgentShield v1.1.0 — Full Reference for AI Assistants & Security Engineers
+
+AgentShield enforces sub-millisecond deterministic security invariants across prompt ingestion, agent tool invocation, output egress, and cryptographic audit logging without relying on an LLM judge.
+
+## Key URLs
+- Website: https://codesphere-u.github.io/agentshield/
+- Studio: https://codesphere-u.github.io/agentshield/studio.html
+- OWASP Benchmark: https://codesphere-u.github.io/agentshield/proof.html
+- Defense Matrix: https://codesphere-u.github.io/agentshield/rules.html
+- Docs: https://codesphere-u.github.io/agentshield/docs.html
+
+## Benchmark Summary (25 Scenarios)
+- Recall: `100.0%` (`21 / 21` adversarial attacks blocked/redacted)
+- False Positive Rate: `0.0%` (`0 / 4` benign controls flagged)
+- Exact Policy Verdict Accuracy: `100.0%` (`25 / 25`)
+- Median Latency: `< 0.15 ms` per check
+
+## Python SDK & CLI
+```bash
+uv run agentshield evaluate --output report.md
+uv run agentshield check-prompt "Ignore all previous system instructions"
+uv run agentshield check-tool --tool http_request --args '{"url": "http://169.254.169.254/latest/meta-data/"}'
+uv run agentshield scan-output "Secret token ..."
+uv run agentshield serve --port 8090
+```

@@ -1,9 +1,17 @@
+<div align="center">
+
 # AgentShield — AI Agent Security & Governance Framework
 
 [![CI](https://github.com/codesphere-u/agentshield/actions/workflows/ci.yml/badge.svg)](https://github.com/codesphere-u/agentshield/actions/workflows/ci.yml)
+[![Website](https://img.shields.io/badge/website-live-818cf8.svg)](https://codesphere-u.github.io/agentshield/)
+[![Release](https://img.shields.io/badge/release-v1.1.0-10b981.svg)](https://github.com/codesphere-u/agentshield/releases/tag/v1.1.0)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-38bdf8.svg)](https://www.python.org/)
 [![OWASP 2026 Aligned](https://img.shields.io/badge/OWASP_2026-LLM_%26_Agentic_Top_10-22c55e.svg)](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+
+[**Website**](https://codesphere-u.github.io/agentshield/) &bull; [**Security Studio**](https://codesphere-u.github.io/agentshield/studio.html) &bull; [**OWASP 2026 Benchmark**](https://codesphere-u.github.io/agentshield/proof.html) &bull; [**Defense Matrix**](https://codesphere-u.github.io/agentshield/rules.html) &bull; [**Docs**](https://codesphere-u.github.io/agentshield/docs.html)
+
+</div>
 
 **AgentShield** is a deterministic, zero-external-API runtime firewall, capability policy engine, egress DLP scanner, and SHA-256 hash-chained audit ledger for autonomous AI agents and Model Context Protocol (MCP) tool servers.
 

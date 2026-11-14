@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#fffdf2"/>
+  <rect x="44" y="44" width="1112" height="542" rx="28" fill="#fbf8eb" stroke="#1e1b18" stroke-opacity="0.14" stroke-width="3"/>
+
+  <!-- Hexagonal Firewall Aegis Mascot -->
+  <g transform="translate(86 126)">
+    <polygon points="108,14 196,65 196,167 108,218 20,167 20,65" fill="#818cf8" stroke="#1e1b18" stroke-width="6" stroke-linejoin="round"/>
+    <rect x="52" y="68" width="112" height="86" rx="22" fill="#fffdf2" stroke="#1e1b18" stroke-width="5"/>
+    <circle cx="86" cy="102" r="14" fill="#10b981" stroke="#1e1b18" stroke-width="4"/>
+    <circle cx="130" cy="102" r="14" fill="#10b981" stroke="#1e1b18" stroke-width="4"/>
+    <path d="M84 134h48" stroke="#1e1b18" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="182" cy="36" r="18" fill="#10b981" stroke="#1e1b18" stroke-width="4.5"/>
+  </g>
+
+  <text x="348" y="182" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="68" font-weight="800" letter-spacing="-1.8" fill="none" stroke="#1e1b18" stroke-width="9" stroke-linejoin="round">AgentShield</text>
+  <text x="348" y="182" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="68" font-weight="800" letter-spacing="-1.8" fill="#818cf8">AgentShield</text>
+
+  <text x="348" y="246" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="32" font-weight="700" fill="#1e1b18">Deterministic OWASP 2026 Agent Security Firewall.</text>
+  <text x="348" y="294" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="500" fill="#4b433b">Prompt injection · Tool capability policy · Egress DLP · SHA-256 audit chain</text>
+
+  <rect x="348" y="344" width="236" height="62" rx="14" fill="#818cf8" stroke="#1e1b18" stroke-width="2.5"/>
+  <text x="466" y="383" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" fill="#ffffff">100.0% Recall</text>
+
+  <rect x="604" y="344" width="236" height="62" rx="14" fill="#10b981" stroke="#1e1b18" stroke-width="2.5"/>
+  <text x="722" y="383" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" fill="#064e3b">0.0% FPR (25/25)</text>
+
+  <rect x="860" y="344" width="244" height="62" rx="14" fill="#fffdf2" stroke="#1e1b18" stroke-width="2.5"/>
+  <text x="982" y="383" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="700" fill="#1e1b18">&lt; 0.15 ms / check</text>
+
+  <rect x="348" y="438" width="756" height="72" rx="14" fill="#f6f2e2" stroke="#1e1b18" stroke-opacity="0.18" stroke-width="2"/>
+  <text x="376" y="482" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="600" fill="#1e1b18">$ uv run agentshield evaluate --output report.md</text>
+</svg>

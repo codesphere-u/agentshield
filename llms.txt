@@ -1,0 +1,11 @@
+# AgentShield
+
+> Deterministic AI Agent Security & Governance Framework aligned with the OWASP 2026 Top 10 for LLM & Agentic Applications.
+
+- Website: https://codesphere-u.github.io/agentshield/
+- Interactive Studio: https://codesphere-u.github.io/agentshield/studio.html
+- OWASP 2026 Benchmark: https://codesphere-u.github.io/agentshield/proof.html
+- Defense Matrix: https://codesphere-u.github.io/agentshield/rules.html
+- Documentation: https://codesphere-u.github.io/agentshield/docs.html
+- Full LLM Context: https://codesphere-u.github.io/agentshield/llms-full.txt
+- Source & Releases: https://github.com/codesphere-u/agentshield

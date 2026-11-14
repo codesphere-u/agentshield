@@ -1,0 +1,17 @@
+# AgentShield
+
+> Deterministic AI Agent Security & Governance Framework aligned with the OWASP 2026 Top 10 for LLM & Agentic Applications.
+
+- Website: https://codesphere-u.github.io/agentshield/
+- Interactive Studio: https://codesphere-u.github.io/agentshield/studio.html
+- OWASP 2026 Benchmark: https://codesphere-u.github.io/agentshield/proof.html
+- Defense Matrix: https://codesphere-u.github.io/agentshield/rules.html
+- Documentation: https://codesphere-u.github.io/agentshield/docs.html
+- Full LLM Context: https://codesphere-u.github.io/agentshield/llms-full.txt
+- Source & Releases: https://github.com/codesphere-u/agentshield
+
+## Core Subsystems
+- `PromptInjectionDetector` (`LLM01:2026`, `LLM08:2026`): Direct override, ChatML delimiters, Base64/Hex decoded payloads, zero-width steganography.
+- `AgentShieldPolicy` (`ASI02:2026`, `LLM06:2026`): Declarative `allow` / `deny` / `require_approval` rules + deep inspectors for shell chaining, path traversal, cloud metadata SSRF, and SQLi.
+- `DataLeakageDetector` (`LLM02:2026`, `LLM05:2026`, `LLM07:2026`): Redacts API keys, PEM keys, JWTs, DB URIs, SSNs, Luhn credit cards, XSS payloads, and canary tokens.
+- `AuditLedger`: Append-only SHA-256 hash-chained log with `verify_integrity()`.

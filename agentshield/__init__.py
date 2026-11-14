@@ -19,7 +19,7 @@ from agentshield.models import (
 )
 from agentshield.policy.engine import AgentShieldPolicy
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 __all__ = [
     "AgentAction",

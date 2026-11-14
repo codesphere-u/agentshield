@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentation — AgentShield Runtime, Policy &amp; Security Lab</title>
+  <meta name="description" content="Install AgentShield, guard Python callables with @guard_tool, verify SHA-256 audit ledgers, and run the FastAPI Security Lab.">
+  <link rel="canonical" href="https://codesphere-u.github.io/agentshield/docs.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#818cf8">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="AgentShield Documentation — SDK, CLI &amp; FastAPI Lab">
+  <meta property="og:description" content="Installation, @guard_tool adapters, declarative policies, SHA-256 audit chains, and FastAPI endpoints.">
+  <meta property="og:url" content="https://codesphere-u.github.io/agentshield/docs.html">
+  <meta property="og:image" content="https://codesphere-u.github.io/agentshield/og-image.svg">
+
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "AgentShield v1.1.0 Documentation",
+    "url": "https://codesphere-u.github.io/agentshield/docs.html",
+    "author": { "@id": "https://codesphere-u.github.io/agentshield/#org" },
+    "isPartOf": { "@id": "https://codesphere-u.github.io/agentshield/#website" }
+  }
+  </script>
+</head>
+<body data-analytics="plausible">
+  <div class="page-col page-col-docs">
+    <header class="site-header">
+      <a class="brand-link" href="index.html" aria-label="AgentShield Home">
+        <svg class="brand-wordmark-svg" viewBox="0 0 196 36" width="196" height="36" role="img" aria-label="AgentShield">
+          <polygon points="16,3 28,10 28,26 16,33 4,26 4,10" fill="#818cf8" stroke="#1e1b18" stroke-width="2.2" stroke-linejoin="round"/>
+          <rect x="10" y="12" width="12" height="11" rx="3" fill="#fffdf2" stroke="#1e1b18" stroke-width="1.6"/>
+          <circle cx="13.5" cy="16.8" r="1.5" fill="#10b981"/>
+          <circle cx="18.5" cy="16.8" r="1.5" fill="#10b981"/>
+          <text x="34" y="25.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22.5" font-weight="800" letter-spacing="-0.6" fill="none" stroke="#1e1b18" stroke-width="4.2" stroke-linejoin="round">AgentShield</text>
+          <text x="34" y="25.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22.5" font-weight="800" letter-spacing="-0.6" fill="#818cf8">AgentShield</text>
+        </svg>
+      </a>
+      <nav class="header-nav" aria-label="Primary navigation">
+        <a href="studio.html">Studio</a>
+        <a href="proof.html">Benchmark</a>
+        <a href="rules.html">Matrix</a>
+        <a class="active" href="docs.html">Docs</a>
+        <a class="icon-link" href="https://github.com/codesphere-u/agentshield" aria-label="AgentShield on GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a10.9 10.9 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        </a>
+        <a class="nav-pill" href="docs.html#install">Install</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="docs-mobile-nav" role="navigation" aria-label="Documentation topics">
+        <button class="docs-mobile-chip active" type="button" data-doc-target="install">Install &amp; CLI</button>
+        <button class="docs-mobile-chip" type="button" data-doc-target="sdk">Python SDK</button>
+        <button class="docs-mobile-chip" type="button" data-doc-target="ledger">Audit Ledger</button>
+        <button class="docs-mobile-chip" type="button" data-doc-target="server">Security Lab</button>
+      </div>
+
+      <div class="docs-layout">
+        <aside class="docs-sidebar" aria-label="Documentation sections">
+          <ul class="docs-rail">
+            <li class="doc-nav-item">
+              <button class="doc-nav-link active" type="button" data-doc-target="install">Getting Started</button>
+              <ul class="doc-subrail open" data-doc-subrail="install">
+                <li><a class="doc-sub-link active" href="#install-uv">uv &amp; pip Install</a></li>
+                <li><a class="doc-sub-link" href="#cli-actions">CLI Commands</a></li>
+              </ul>
+            </li>
+            <li class="doc-nav-item">
+              <button class="doc-nav-link" type="button" data-doc-target="sdk">Python SDK &amp; Adapters</button>
+              <ul class="doc-subrail" data-doc-subrail="sdk">
+                <li><a class="doc-sub-link" href="#guard-tool">@guard_tool Decorator</a></li>
+                <li><a class="doc-sub-link" href="#provider-schemas">OpenAI &amp; MCP Schemas</a></li>
+              </ul>
+            </li>
+            <li class="doc-nav-item">
+              <button class="doc-nav-link" type="button" data-doc-target="ledger">Audit Ledger</button>
+              <ul class="doc-subrail" data-doc-subrail="ledger">
+                <li><a class="doc-sub-link" href="#hash-chain">SHA-256 Hash Chain</a></li>
+              </ul>
+            </li>
+            <li class="doc-nav-item">
+              <button class="doc-nav-link" type="button" data-doc-target="server">FastAPI Security Lab</button>
+              <ul class="doc-subrail" data-doc-subrail="server">
+                <li><a class="doc-sub-link" href="#lab-ui">Workbench &amp; Health</a></li>
+              </ul>
+            </li>
+          </ul>
+        </aside>
+
+        <article class="doc-content">
+          <section class="doc-section" data-doc-section="install" id="install">
+            <h1>Getting Started with AgentShield</h1>
+            <p>Install AgentShield on Python 3.10+ with Pydantic v2, FastAPI, and Uvicorn included cleanly in runtime dependencies.</p>
+
+            <h2 id="install-uv">uv &amp; pip Install</h2>
+            <div class="handy-card">
+              <div class="handy-tabs-bar">
+                <div class="handy-tabs" role="tablist">
+                  <button class="handy-tab active" type="button" data-tab="uv">uv sync</button>
+                  <button class="handy-tab" type="button" data-tab="pip">pip</button>
+                </div>
+                <span class="version-tag">v1.1.0</span>
+              </div>
+              <div class="doc-codeblock" data-tab-pane="uv">
+                <pre><span class="syn-cmd">uv</span> <span class="syn-arg">sync --extra dev &amp;&amp; uv run agentshield evaluate</span></pre>
+                <button class="copy-icon-btn" type="button" data-copy-target="pre" aria-label="Copy uv command">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
+              </div>
+              <div class="doc-codeblock" data-tab-pane="pip" hidden>
+                <pre><span class="syn-cmd">pip</span> <span class="syn-arg">install git+https://github.com/codesphere-u/agentshield.git</span></pre>
+                <button class="copy-icon-btn" type="button" data-copy-target="pre" aria-label="Copy pip command">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <h2 id="cli-actions">CLI Commands</h2>
+            <ul>
+              <li><code>agentshield evaluate --output report.md</code> &mdash; Runs 25 OWASP 2026 scenarios.</li>
+              <li><code>agentshield check-prompt "..."</code> &mdash; Runs multi-layer injection detection.</li>
+              <li><code>agentshield check-tool --tool ... --args '{...}'</code> &mdash; Evaluates deep argument safety.</li>
+              <li><code>agentshield scan-output "..."</code> &mdash; Scans and redacts leaked credentials &amp; XSS.</li>
+              <li><code>agentshield serve --port 8090</code> &mdash; Starts FastAPI Security Lab.</li>
+            </ul>
+          </section>
+
+          <section class="doc-section" data-doc-section="sdk" hidden>
+            <h1>Python SDK &amp; Adapters</h1>
+            <h2 id="guard-tool">@guard_tool Decorator</h2>
+            <p>Wrap arbitrary tools with <code>@guard_tool(runtime, tool_name="read_file")</code> to enforce path sandboxes and automatically redact secret tokens returned to callers.</p>
+            <h2 id="provider-schemas">OpenAI &amp; MCP Schemas</h2>
+            <p><code>ShieldedAgentRuntime</code> normalizes OpenAI tool calls and Anthropic/MCP JSON payloads through a single deterministic policy pipeline.</p>
+          </section>
+
+          <section class="doc-section" data-doc-section="ledger" hidden>
+            <h1>Tamper-Evident Audit Ledger</h1>
+            <h2 id="hash-chain">SHA-256 Hash Chain</h2>
+            <p>Every verdict appends to an immutable SHA-256 hash chain. Call <code>runtime.audit_ledger.verify_integrity()</code> at startup or inside <code>/readyz</code> health probes to verify chain integrity.</p>
+          </section>
+
+          <section class="doc-section" data-doc-section="server" hidden>
+            <h1>FastAPI Security Lab</h1>
+            <h2 id="lab-ui">Workbench &amp; Health Probes</h2>
+            <p><code>agentshield serve --port 8090</code> serves the FastAPI Security Lab with hardened security headers, <code>/health</code>, <code>/healthz</code>, <code>/readyz</code> (returns 503 if audit chain is tampered), and <code>/metrics</code> (Prometheus or JSON).</p>
+          </section>
+
+          <div class="doc-pagination">
+            <button class="page-step-btn prev" id="doc-prev-btn" type="button" hidden>
+              <small>Previous</small>
+              <strong id="doc-prev-label">Getting Started</strong>
+            </button>
+            <button class="page-step-btn next" id="doc-next-btn" type="button">
+              <small>Next</small>
+              <strong id="doc-next-label">Python SDK &amp; Adapters</strong>
+            </button>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="index.html">Home</a> &middot;
+        <a href="studio.html">Studio</a> &middot;
+        <a href="proof.html">Benchmark</a> &middot;
+        <a href="rules.html">Matrix</a> &middot;
+        <a href="llms.txt">llms.txt</a> &middot;
+        <a href="https://github.com/codesphere-u/agentshield">GitHub</a> &middot;
+        <a href="https://github.com/codesphere-u/agentshield/releases/tag/v1.1.0">v1.1.0</a>
+      </div>
+      <div>Privacy-friendly analytics via Plausible &middot; Apache-2.0 License &middot; <a href="https://github.com/codesphere-u">codesphere-u</a></div>
+    </footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

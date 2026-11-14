@@ -4,6 +4,17 @@ All notable changes to **AgentShield** are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-11-14
+
+### Added
+- Dedicated Warm Ivory multi-page static website (`website/`, live at `https://codesphere-u.github.io/agentshield/`) with Cobalt Indigo (`#818cf8`) and Emerald Mint (`#10b981`) accents.
+- Interactive Security Studio (`website/studio.html`) with live prompt injection & egress DLP simulator, deep tool-policy tester (Shell/FS/SSRF/SQLi), and OWASP rule builder.
+- Reproducible OWASP 2026 benchmark proof (`website/proof.html`), searchable defense matrix (`website/rules.html`), and sticky-rail documentation (`website/docs.html`).
+- Machine discovery endpoints (`llms.txt`, `llms-full.txt`, `sitemap.xml`, `robots.txt`), Schema.org `@graph` JSON-LD, `.github/workflows/pages.yml`, and automated website validation tests (`tests/test_website_and_docs.py`).
+
+### Changed
+- Bumped package and `SecurityReport.framework_version` to `1.1.0`.
+
 ## [1.0.0] - 2026-11-02
 
 ### Added
