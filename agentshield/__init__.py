@@ -2,6 +2,7 @@
 
 from agentshield.adapters.runtime import ShieldedAgentRuntime, ToolExecutionBlockedError, guard_tool
 from agentshield.audit.ledger import AuditLedger
+from agentshield.detectors.crescendo import ConversationRiskTracker, TurnRiskRecord
 from agentshield.detectors.data_leakage import DataLeakageDetector
 from agentshield.detectors.prompt_injection import PromptInjectionDetector
 from agentshield.evaluation.suite import BenchmarkSuite
@@ -27,6 +28,7 @@ __all__ = [
     "AuditEntry",
     "AuditLedger",
     "BenchmarkSuite",
+    "ConversationRiskTracker",
     "DataLeakageDetector",
     "EvaluationVerdict",
     "OWASPCategory",
@@ -39,5 +41,6 @@ __all__ = [
     "ShieldedAgentRuntime",
     "ToolCall",
     "ToolExecutionBlockedError",
+    "TurnRiskRecord",
     "guard_tool",
 ]
