@@ -36,7 +36,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 dependencies = [
-    "pydantic>=2.5.0",
+    "pydantic>=2.14.4",
     "fastapi>=0.162.5",
     "uvicorn>=0.54.0",
 ]
